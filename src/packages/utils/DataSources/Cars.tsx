@@ -8,7 +8,8 @@ interface CarsSourcerProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const CarsSourcer: FC<CarsSourcerProps> = ({
-    children
+    children,
+    ...props
 }) => {
 
     const [cars, setCars] = useState<Cars[]>(carsData)
@@ -20,11 +21,21 @@ export const CarsSourcer: FC<CarsSourcerProps> = ({
     const car_type = searchParams.get('car_type');
 
     useEffect(() => {
-    }, [search, production_year, car_type])
+        if ((search?.length ?? false) > 0) {
+
+            const newCars = cars.filter(car => {
+                const title = car.title?.toLowerCase().replaceAll(" ", "").slice(0, ((search?.length ?? 1) - 1))
+                console.log(title, search?.toLowerCase().replaceAll(" ", ""));
+
+            });
+
+            setCars(newCars)
+        }
+    }, [search])
 
     return (
         <>
-            <Condition condition={cars.length > 0} >
+            <Condition {...props} condition={cars.length > 0} >
                 {cars.map((car, index) => {
                     return (
                         <div key={index}>

@@ -5,6 +5,8 @@ export const HeroSection: FC = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
+    const search = searchParams.get('search')
+
     const handleQuery: ChangeEventHandler<HTMLInputElement> = (e) => setSearchParams({
         search: e.target.value
     })
@@ -25,6 +27,7 @@ export const HeroSection: FC = () => {
                             className="w-full py-2 px-4 tracking-wide placeholder:tracking-wide bg-[#F6F7F9] rounded-lg outline-none"
                             placeholder="Search by name"
                             onChange={handleQuery}
+                            value={search?.toString()}
                         />
                     </div>
                 </div>

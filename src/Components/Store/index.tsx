@@ -9,7 +9,7 @@ export const Store: FC = () => {
         <section className="w-screen">
             <StoreWrapper>
                 <Filters />
-                <CarsSourcer>
+                <CarsSourcer className="w-full grid grid-cols-3 gap-12">
                     <Product />
                 </CarsSourcer>
             </StoreWrapper>
