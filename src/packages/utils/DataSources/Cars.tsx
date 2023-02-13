@@ -35,7 +35,7 @@ export const CarsSourcer: FC<CarsSourcerProps> = ({ children, ...props }) => {
 
       setCars(newCars);
     }
-  }, [search]);
+  }, [search, cars]);
 
   return (
     <>
